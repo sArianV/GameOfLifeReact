@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+# Vite + React + Typescript + Eslint + Prettier
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A starter for React with Typescript with the fast Vite and all static code testing with Eslint and formatting with Prettier.
 
-Currently, two official plugins are available:
+![Vite + React + Typescript + Eslint + Prettier](/resources/screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+I found out about Vite and I wanted to have a boilerplate for the technologies that I use. You can find more about these in the following links: [Vite](https://github.com/vitejs/vite), [React](https://reactjs.org/), [Typescript](https://www.typescriptlang.org/), [Eslint](https://eslint.org/), [Prettier](https://prettier.io/).
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Clone the repo and run `yarn install`
 
-- Configure the top-level `parserOptions` property like this:
+or Run command
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+npx degit TheSwordBreaker/vite-reactts-eslint-prettier project-name
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Start
+
+After the successfull installation of the packages: `yarn dev`
+
+## Steps in Vscode
+
+#### (works with better with this template)
+
+1. Install Eslint and prettier extension for vs code.
+2. Make Sure Both are enabled
+3. Make sure all packages are Installed. (Mostly Eslint and prettier in node_modules)
+4. Enable formatOnSave of vs code
+5. Open a .tsx file and check if the bottom right corners of vs code have Eslint and Prettier with a double tick
+
+![Screenshot (253)_LI](https://user-images.githubusercontent.com/52120562/162486286-7383a737-d555-4f9b-a4dd-c4a81deb7b96.jpg)
+
+If Everything is Good Then It Should Work, but let me new if something else happens
+
+Made with ❤️ by theSwordBreaker(we Destory all types of sword ⚡)
