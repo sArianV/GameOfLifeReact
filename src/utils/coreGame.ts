@@ -1,9 +1,9 @@
+// Tamaño del tablero
 const filas = 20;
 const columnas = 40;
 
-// Tamaño del tablero
 // Tipo para representar el tablero
-export type Tablero = number[][];
+export type Tablero = boolean[][];
 
 // Inicializar el tablero de manera aleatoria
 export function inicializarTablero(): Tablero {
@@ -11,17 +11,10 @@ export function inicializarTablero(): Tablero {
   for (let i = 0; i < filas; i++) {
     tablero[i] = [];
     for (let j = 0; j < columnas; j++) {
-      tablero[i][j] = Math.random() > 0.5 ? 1 : 0; // 1 para célula viva, 0 para célula muerta
+      tablero[i][j] = Math.random() > 0.5; // true para célula viva, false para célula muerta
     }
   }
   return tablero;
-}
-
-// Imprimir el tablero en la consola
-export function imprimirTablero(tablero: Tablero): void {
-  for (let i = 0; i < filas; i++) {
-    console.log(tablero[i].join(' '));
-  }
 }
 
 // Calcular el siguiente estado del tablero según las reglas del Juego de la Vida
@@ -34,17 +27,17 @@ export function siguienteEstado(tablero: Tablero): Tablero {
       const vecinosVivos = contarVecinosVivos(tablero, i, j);
 
       // Aplicar reglas del juego
-      if (tablero[i][j] === 1) {
+      if (tablero[i][j]) {
         if (vecinosVivos < 2 || vecinosVivos > 3) {
-          nuevoTablero[i][j] = 0; // Célula muerta por soledad o sobrepoblación
+          nuevoTablero[i][j] = false; // Célula muerta por soledad o sobrepoblación
         } else {
-          nuevoTablero[i][j] = 1; // Célula viva sigue viva
+          nuevoTablero[i][j] = true; // Célula viva sigue viva
         }
       } else {
         if (vecinosVivos === 3) {
-          nuevoTablero[i][j] = 1; // Célula muerta revive
+          nuevoTablero[i][j] = true; // Célula muerta revive
         } else {
-          nuevoTablero[i][j] = 0; // Célula muerta sigue muerta
+          nuevoTablero[i][j] = false; // Célula muerta sigue muerta
         }
       }
     }
@@ -68,12 +61,13 @@ function contarVecinosVivos(tablero: Tablero, x: number, y: number): number {
         columnaVecino >= 0 &&
         columnaVecino < columnas
       ) {
-        contador += tablero[filaVecino][columnaVecino];
+        contador += tablero[filaVecino][columnaVecino] ? 1 : 0;
       }
     }
   }
 
-  contador -= tablero[x][y];
+  // Restar la célula en la posición actual (para no contarla dos veces)
+  contador -= tablero[x][y] ? 1 : 0;
 
   return contador;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Square = ({ status }: { status: boolean }) => {
+const Square = ({ status, theme }: { status: boolean; theme?: 'dark' | 'light' }) => {
   return (
     <div
       style={
@@ -8,24 +8,24 @@ const Square = ({ status }: { status: boolean }) => {
           ? {
               width: '.8rem',
               height: '.8rem',
-              backgroundColor: 'white',
+              backgroundColor: 'transparent',
               borderRight: '1px',
               borderRightStyle: 'solid',
-              borderRightColor: 'lightgray',
+              borderRightColor: 'gray',
               borderBottom: '1px',
               borderBottomStyle: 'solid',
-              borderBottomColor: 'lightgray',
+              borderBottomColor: 'gray',
             }
           : {
               width: '.8rem',
               height: '.8rem',
-              backgroundColor: 'darkviolet',
+              backgroundColor: theme === 'dark' ? 'burlywood' : 'darkviolet',
               borderRight: '1px',
               borderRightStyle: 'solid',
-              borderRightColor: 'lightgray',
+              borderRightColor: 'gray',
               borderBottom: '1px',
               borderBottomStyle: 'solid',
-              borderBottomColor: 'lightgray',
+              borderBottomColor: 'gray',
             }
       }
     />

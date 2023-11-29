@@ -5,9 +5,11 @@ import Square from '../Square/Square';
 const BoardRowRender = ({
   boardRow,
   rowNumber,
+  theme = 'dark',
 }: {
-  boardRow: number[];
+  boardRow: boolean[];
   rowNumber: number;
+  theme?: 'dark' | 'light';
 }) => {
   return (
     <div
@@ -16,7 +18,11 @@ const BoardRowRender = ({
       }}
     >
       {boardRow.map((square, columnNumber) => (
-        <Square key={`people-${rowNumber}-${columnNumber}`} status={Boolean(square)} />
+        <Square
+          key={`people-${rowNumber}-${columnNumber}`}
+          status={square}
+          theme={theme}
+        />
       ))}
     </div>
   );
