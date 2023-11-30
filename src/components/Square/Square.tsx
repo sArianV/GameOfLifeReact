@@ -16,28 +16,23 @@ const Square = ({
       style={
         !status
           ? {
+              cursor: 'pointer',
               borderRadius: '2px',
               width: '.8rem',
               height: '.8rem',
-              backgroundColor: 'transparent',
-              borderRight: '1px',
-              borderRightStyle: 'solid',
-              borderRightColor: 'gray',
-              borderBottom: '1px',
-              borderBottomStyle: 'solid',
-              borderBottomColor: 'gray',
+              backgroundColor:
+                theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+              marginRight: '1px',
+              marginBottom: '1px',
             }
           : {
+              cursor: 'pointer',
               borderRadius: '2px',
               width: '.8rem',
               height: '.8rem',
               backgroundColor: theme === 'dark' ? 'burlywood' : 'darkviolet',
-              borderRight: '1px',
-              borderRightStyle: 'solid',
-              borderRightColor: 'gray',
-              borderBottom: '1px',
-              borderBottomStyle: 'solid',
-              borderBottomColor: 'gray',
+              marginRight: '1px',
+              marginBottom: '1px',
             }
       }
     />

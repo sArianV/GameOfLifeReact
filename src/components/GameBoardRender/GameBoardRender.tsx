@@ -13,12 +13,6 @@ const GameBoardRender = ({ theme = 'dark', onClick }: IGameBoardRenderProps) => 
         width: 'fit-content',
         display: 'flex',
         flexDirection: 'column',
-        borderTop: '1px',
-        borderTopStyle: 'solid',
-        borderTopColor: 'gray',
-        borderLeft: '1px',
-        borderLeftStyle: 'solid',
-        borderLeftColor: 'gray',
       }}
     >
       {board?.map((boardRow, index) => (
