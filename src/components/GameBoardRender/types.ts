@@ -1,6 +1,7 @@
-import { Tablero } from '../../utils/coreGame';
+import { TGameBoard } from '../../utils/coreGame';
 
 export interface IGameBoardRenderProps {
-  board?: Tablero;
+  board?: TGameBoard;
   theme?: 'dark' | 'light';
+  onClick?: (x: number, y: number) => void;
 }
