@@ -1,6 +1,6 @@
 // Tamaño del tablero
-const rows = 60;
-const columns = 40;
+const rows = 40;
+const columns = 80;
 
 // Tipo para representar el tablero
 export type TGameBoard = boolean[][];
