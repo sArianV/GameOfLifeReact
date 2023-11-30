@@ -1,73 +1,73 @@
 // Tamaño del tablero
-const filas = 20;
-const columnas = 40;
+const rows = 60;
+const columns = 40;
 
 // Tipo para representar el tablero
-export type Tablero = boolean[][];
+export type TGameBoard = boolean[][];
 
 // Inicializar el tablero de manera aleatoria
-export function inicializarTablero(): Tablero {
-  const tablero: Tablero = [];
-  for (let i = 0; i < filas; i++) {
-    tablero[i] = [];
-    for (let j = 0; j < columnas; j++) {
-      tablero[i][j] = Math.random() > 0.5; // true para célula viva, false para célula muerta
+export function initializeRandomBoard(): TGameBoard {
+  const board: TGameBoard = [];
+  for (let i = 0; i < rows; i++) {
+    board[i] = [];
+    for (let j = 0; j < columns; j++) {
+      board[i][j] = Math.random() > 0.5; // true para célula viva, false para célula muerta
     }
   }
-  return tablero;
+  return board;
 }
 
 // Calcular el siguiente estado del tablero según las reglas del Juego de la Vida
-export function siguienteEstado(tablero: Tablero): Tablero {
-  const nuevoTablero: Tablero = [];
+export function generateNextBoard(currentBoard: TGameBoard): TGameBoard {
+  const newBoard: TGameBoard = [];
 
-  for (let i = 0; i < filas; i++) {
-    nuevoTablero[i] = [];
-    for (let j = 0; j < columnas; j++) {
-      const vecinosVivos = contarVecinosVivos(tablero, i, j);
+  for (let i = 0; i < rows; i++) {
+    newBoard[i] = [];
+    for (let j = 0; j < columns; j++) {
+      const neighborsCount = countNeighbors(currentBoard, i, j);
 
       // Aplicar reglas del juego
-      if (tablero[i][j]) {
-        if (vecinosVivos < 2 || vecinosVivos > 3) {
-          nuevoTablero[i][j] = false; // Célula muerta por soledad o sobrepoblación
+      if (currentBoard[i][j]) {
+        if (neighborsCount < 2 || neighborsCount > 3) {
+          newBoard[i][j] = false; // Célula muerta por soledad o sobrepoblación
         } else {
-          nuevoTablero[i][j] = true; // Célula viva sigue viva
+          newBoard[i][j] = true; // Célula viva sigue viva
         }
       } else {
-        if (vecinosVivos === 3) {
-          nuevoTablero[i][j] = true; // Célula muerta revive
+        if (neighborsCount === 3) {
+          newBoard[i][j] = true; // Célula muerta revive
         } else {
-          nuevoTablero[i][j] = false; // Célula muerta sigue muerta
+          newBoard[i][j] = false; // Célula muerta sigue muerta
         }
       }
     }
   }
 
-  return nuevoTablero;
+  return newBoard;
 }
 
 // Contar el número de células vivas alrededor de una posición dada
-function contarVecinosVivos(tablero: Tablero, x: number, y: number): number {
-  let contador = 0;
+function countNeighbors(currentBoard: TGameBoard, x: number, y: number): number {
+  let count = 0;
 
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
-      const filaVecino = x + i;
-      const columnaVecino = y + j;
+      const neighborsRow = x + i;
+      const neighborsColumn = y + j;
 
       if (
-        filaVecino >= 0 &&
-        filaVecino < filas &&
-        columnaVecino >= 0 &&
-        columnaVecino < columnas
+        neighborsRow >= 0 &&
+        neighborsRow < rows &&
+        neighborsColumn >= 0 &&
+        neighborsColumn < columns
       ) {
-        contador += tablero[filaVecino][columnaVecino] ? 1 : 0;
+        count += currentBoard[neighborsRow][neighborsColumn] ? 1 : 0;
       }
     }
   }
 
   // Restar la célula en la posición actual (para no contarla dos veces)
-  contador -= tablero[x][y] ? 1 : 0;
+  count -= currentBoard[x][y] ? 1 : 0;
 
-  return contador;
+  return count;
 }

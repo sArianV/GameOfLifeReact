@@ -1,10 +1,12 @@
+import { useAtomValue } from 'jotai';
 import React from 'react';
 
+import { gameBoardAtom } from '../../atoms/gameEngineAtom';
 import BoardRowRender from '../BoardRowRender/BoardRowRender';
-import WithGameBoardEngine from '../hocs/withGameBoardEngine';
 import { IGameBoardRenderProps } from './types';
 
-const GameBoardRender = ({ board, theme = 'dark' }: IGameBoardRenderProps) => {
+const GameBoardRender = ({ theme = 'dark', onClick }: IGameBoardRenderProps) => {
+  const board = useAtomValue(gameBoardAtom);
   return (
     <div
       style={{
@@ -21,6 +23,7 @@ const GameBoardRender = ({ board, theme = 'dark' }: IGameBoardRenderProps) => {
     >
       {board?.map((boardRow, index) => (
         <BoardRowRender
+          onClick={onClick}
           key={`rowN-${index}`}
           boardRow={boardRow}
           rowNumber={index}
@@ -31,4 +34,4 @@ const GameBoardRender = ({ board, theme = 'dark' }: IGameBoardRenderProps) => {
   );
 };
 
-export default WithGameBoardEngine(GameBoardRender);
+export default GameBoardRender;

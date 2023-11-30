@@ -1,11 +1,22 @@
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 
-const Square = ({ status, theme }: { status: boolean; theme?: 'dark' | 'light' }) => {
+const Square = ({
+  status,
+  theme,
+  onClick,
+}: {
+  status: boolean;
+  theme?: 'dark' | 'light';
+  onClick: () => void;
+}) => {
   return (
-    <div
+    <Box
+      onClick={onClick}
       style={
         !status
           ? {
+              borderRadius: '2px',
               width: '.8rem',
               height: '.8rem',
               backgroundColor: 'transparent',
@@ -17,6 +28,7 @@ const Square = ({ status, theme }: { status: boolean; theme?: 'dark' | 'light' }
               borderBottomColor: 'gray',
             }
           : {
+              borderRadius: '2px',
               width: '.8rem',
               height: '.8rem',
               backgroundColor: theme === 'dark' ? 'burlywood' : 'darkviolet',
