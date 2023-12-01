@@ -15,7 +15,7 @@ const theme = extendTheme({
       body: {
         bgGradient:
           colorMode === 'light'
-            ? 'linear-gradient(to top, #5ee7df 0%, #b490ca 100%)'
+            ? 'linear-gradient(180deg, rgb(245, 95, 152, .6) 11.2%, rgb(254, 148, 136, .8) 100.2%);'
             : 'linear-gradient( rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%)',
       },
     }),
@@ -24,3 +24,4 @@ const theme = extendTheme({
 
 export default theme;
 /* 'linear-gradient(to top, #5ee7df 0%, #b490ca 100%)' */
+/* 'linear-gradient(180deg, rgb(245, 95, 152, .6) 11.2%, rgb(254, 148, 136, .8) 100.2%);' */
