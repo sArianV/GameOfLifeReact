@@ -1,6 +1,7 @@
 // Tamaño del tablero
-const rows = 40;
-const columns = 80;
+const columns = 170;
+const rows = 70;
+export const cellSize = 8;
 
 // Tipo para representar el tablero
 export type TGameBoard = boolean[][];
@@ -42,7 +43,6 @@ export function generateNextBoard(currentBoard: TGameBoard): TGameBoard {
       }
     }
   }
-
   return newBoard;
 }
 
@@ -71,3 +71,6 @@ function countNeighbors(currentBoard: TGameBoard, x: number, y: number): number 
 
   return count;
 }
+
+export const boardWidth = columns;
+export const boardHeight = rows;
