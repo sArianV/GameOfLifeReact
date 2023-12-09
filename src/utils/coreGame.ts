@@ -1,7 +1,7 @@
 // Tamaño del tablero
 const columns = 170;
 const rows = 70;
-export const cellSize = 9;
+export const cellSize = 8;
 
 // Tipo para representar el tablero
 export type TGameBoard = boolean[][];
