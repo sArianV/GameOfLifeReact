@@ -5,7 +5,6 @@ import React from 'react';
 
 import { gameBoardAtom } from '../../atoms/gameEngineAtom';
 import { boardHeight, boardWidth, cellSize } from '../../utils/coreGame';
-import BoardRowRender from '../BoardRowRender/BoardRowRender';
 import { IGameBoardRenderProps } from './types';
 const GameBoardRender = ({ theme = 'dark', onClick }: IGameBoardRenderProps) => {
   const board = useAtomValue(gameBoardAtom);
