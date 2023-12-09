@@ -1,6 +1,7 @@
 // Tamaño del tablero
-const rows = 40;
-const columns = 80;
+const columns = 170;
+const rows = 70;
+export const cellSize = 8;
 
 // Tipo para representar el tablero
 export type TGameBoard = boolean[][];
@@ -42,7 +43,6 @@ export function generateNextBoard(currentBoard: TGameBoard): TGameBoard {
       }
     }
   }
-
   return newBoard;
 }
 
@@ -52,17 +52,10 @@ function countNeighbors(currentBoard: TGameBoard, x: number, y: number): number 
 
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
-      const neighborsRow = x + i;
-      const neighborsColumn = y + j;
+      const neighborsRow = (x + i + rows) % rows; // Asegurar que esté en el rango [0, rows)
+      const neighborsColumn = (y + j + columns) % columns; // Asegurar que esté en el rango [0, columns)
 
-      if (
-        neighborsRow >= 0 &&
-        neighborsRow < rows &&
-        neighborsColumn >= 0 &&
-        neighborsColumn < columns
-      ) {
-        count += currentBoard[neighborsRow][neighborsColumn] ? 1 : 0;
-      }
+      count += currentBoard[neighborsRow][neighborsColumn] ? 1 : 0;
     }
   }
 
@@ -71,3 +64,6 @@ function countNeighbors(currentBoard: TGameBoard, x: number, y: number): number 
 
   return count;
 }
+
+export const boardWidth = columns;
+export const boardHeight = rows;
