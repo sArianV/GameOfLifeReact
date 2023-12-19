@@ -4,7 +4,6 @@ import { useAtomValue } from 'jotai';
 import React from 'react';
 
 import { gameBoardAtom } from '../../atoms/gameEngineAtom';
-import { boardHeight, boardWidth, cellSize } from '../../utils/coreGame';
 import { IGameBoardRenderProps } from './types';
 const GameBoardRender = ({ theme = 'dark', onClick }: IGameBoardRenderProps) => {
   const board = useAtomValue(gameBoardAtom);
@@ -13,8 +12,8 @@ const GameBoardRender = ({ theme = 'dark', onClick }: IGameBoardRenderProps) => 
       style={{
         width: 'fit-content',
         display: 'grid',
-        gridTemplateRows: `repeat(${boardHeight},  auto)`,
-        gridTemplateColumns: `repeat(${boardWidth}, auto)`,
+        gridTemplateRows: `repeat(${1000000},  auto)`,
+        gridTemplateColumns: `repeat(${1000000}, auto)`,
       }}
     >
       {board?.map((boardRow, rowNumber) => {
@@ -28,8 +27,8 @@ const GameBoardRender = ({ theme = 'dark', onClick }: IGameBoardRenderProps) => 
                 ? {
                     cursor: 'pointer',
                     borderRadius: '1px',
-                    width: cellSize,
-                    height: cellSize,
+                    width: 9999,
+                    height: 9999,
                     backgroundColor:
                       theme === 'dark'
                         ? 'rgba(255, 255, 255, 0.1)'
@@ -40,8 +39,8 @@ const GameBoardRender = ({ theme = 'dark', onClick }: IGameBoardRenderProps) => 
                 : {
                     cursor: 'pointer',
                     borderRadius: '1px',
-                    width: cellSize,
-                    height: cellSize,
+                    width: 9999,
+                    height: 9999,
                     backgroundColor: theme === 'dark' ? 'burlywood' : 'darkviolet',
                     marginRight: '1px',
                     marginBottom: '1px',
