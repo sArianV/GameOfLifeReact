@@ -8,17 +8,17 @@ function App() {
     <Box
       w="100%"
       minH="100vh"
-      p={4}
+      pt="4rem"
       display="flex"
       flexDirection="column"
       alignItems="center"
-      justifyContent="center"
+      justifyContent="flex-start"
       gap={4}
     >
-      <Button onClick={toggleColorMode}>
+      {/*  <Button onClick={toggleColorMode}>
         Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
-      </Button>
-      <GameOfLife theme={colorMode} />
+      </Button> */}
+      <GameOfLife />
     </Box>
   );
 }

@@ -1,13 +1,8 @@
-// Tamaño del tablero
-const columns = 170;
-const rows = 70;
-export const cellSize = 8;
-
 // Tipo para representar el tablero
 export type TGameBoard = boolean[][];
 
 // Inicializar el tablero de manera aleatoria
-export function initializeRandomBoard(): TGameBoard {
+export function initializeRandomBoard(rows: number, columns: number): TGameBoard {
   const board: TGameBoard = [];
   for (let i = 0; i < rows; i++) {
     board[i] = [];
@@ -19,13 +14,17 @@ export function initializeRandomBoard(): TGameBoard {
 }
 
 // Calcular el siguiente estado del tablero según las reglas del Juego de la Vida
-export function generateNextBoard(currentBoard: TGameBoard): TGameBoard {
+export function generateNextBoard(
+  currentBoard: TGameBoard,
+  rows: number,
+  columns: number,
+): TGameBoard {
   const newBoard: TGameBoard = [];
 
   for (let i = 0; i < rows; i++) {
     newBoard[i] = [];
     for (let j = 0; j < columns; j++) {
-      const neighborsCount = countNeighbors(currentBoard, i, j);
+      const neighborsCount = countNeighbors(currentBoard, i, j, rows, columns);
 
       // Aplicar reglas del juego
       if (currentBoard[i][j]) {
@@ -47,7 +46,13 @@ export function generateNextBoard(currentBoard: TGameBoard): TGameBoard {
 }
 
 // Contar el número de células vivas alrededor de una posición dada
-function countNeighbors(currentBoard: TGameBoard, x: number, y: number): number {
+function countNeighbors(
+  currentBoard: TGameBoard,
+  x: number,
+  y: number,
+  rows: number,
+  columns: number,
+): number {
   let count = 0;
 
   for (let i = -1; i <= 1; i++) {
@@ -64,6 +69,3 @@ function countNeighbors(currentBoard: TGameBoard, x: number, y: number): number 
 
   return count;
 }
-
-export const boardWidth = columns;
-export const boardHeight = rows;

@@ -1,14 +1,17 @@
-import { useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 
-import { gameBoardAtom } from '../../atoms/gameEngineAtom';
+import { boardConfigAtom, gameBoardAtom } from '../../atoms/gameEngineAtom';
 import WrapperGameBoardEngine from '../../wrappers/WrapperGameBoardEngine';
-import GameBoardRender from '../GameBoardRender/GameBoardRender';
+import CanvasBoardRender from '../CanvasBoardRender/CanvasBoardRender';
 
-const GameOfLife = ({ theme }: { theme: 'light' | 'dark' }) => {
+const GameOfLife = () => {
   const setGameBoard = useSetAtom(gameBoardAtom);
+  const { speed, cellBorderWidth, cellSize, rows, columns } =
+    useAtomValue(boardConfigAtom);
 
   const handleCellClick = (row: number, column: number) => {
     setGameBoard((currentBoard) => {
+      if (!currentBoard) return currentBoard;
       const newBoard = [...currentBoard];
       newBoard[row][column] = !newBoard[row][column];
       return newBoard;
@@ -16,8 +19,9 @@ const GameOfLife = ({ theme }: { theme: 'light' | 'dark' }) => {
   };
 
   return (
-    <WrapperGameBoardEngine>
-      <GameBoardRender theme={theme} onClick={handleCellClick} />
+    <WrapperGameBoardEngine speed={speed} columns={columns} rows={rows}>
+      <CanvasBoardRender cellSize={cellSize} cellBorderWidth={cellBorderWidth} />
+      {/* <GameBoardRender theme={theme} onClick={handleCellClick} /> */}
     </WrapperGameBoardEngine>
   );
 };
