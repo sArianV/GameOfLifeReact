@@ -18,7 +18,7 @@ function App() {
       {/*  <Button onClick={toggleColorMode}>
         Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
       </Button> */}
-      <GameOfLife theme={colorMode} />
+      <GameOfLife />
     </Box>
   );
 }

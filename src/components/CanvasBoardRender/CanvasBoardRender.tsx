@@ -3,7 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 
 import { gameBoardAtom } from '../../atoms/gameEngineAtom';
 
-const CanvasBoardRender: React.FC = () => {
+const CanvasBoardRender = ({
+  cellSize,
+  cellBorderWidth,
+}: {
+  cellSize: number;
+  cellBorderWidth: number;
+}) => {
   const board = useAtomValue(gameBoardAtom);
   const [canvasContext, setCanvasContext] = useState<CanvasRenderingContext2D | null>(
     null,
@@ -19,8 +25,6 @@ const CanvasBoardRender: React.FC = () => {
       if (!context) return;
 
       if (board) {
-        const cellSize = 5; // Tamaño de cada celda en píxeles
-        const borderWidth = 1; // Ancho del borde en píxeles
         const deathCellColor = 'rgba(255, 255, 255, 0.1)'; // Color de las celdas muertas
         const liveCellColor = 'burlywood'; // Color de las celdas vivas
         // Calcular el ancho y la altura del canvas en función del tamaño de la celda y la cantidad de filas y columnas
@@ -40,18 +44,18 @@ const CanvasBoardRender: React.FC = () => {
             context.fillRect(
               col * cellSize,
               row * cellSize,
-              cellSize - borderWidth,
-              cellSize - borderWidth,
+              cellSize - cellBorderWidth,
+              cellSize - cellBorderWidth,
             );
 
             // Dibujar el borde alrededor de la celda
             context.strokeStyle = 'transparent';
-            context.lineWidth = borderWidth;
+            context.lineWidth = cellBorderWidth;
             context.strokeRect(
-              col * cellSize + borderWidth / 2,
-              row * cellSize + borderWidth / 2,
-              cellSize - borderWidth,
-              cellSize - borderWidth,
+              col * cellSize + cellBorderWidth / 2,
+              row * cellSize + cellBorderWidth / 2,
+              cellSize - cellBorderWidth,
+              cellSize - cellBorderWidth,
             );
           }
         }
@@ -59,7 +63,7 @@ const CanvasBoardRender: React.FC = () => {
 
       setCanvasContext(context);
     },
-    [board],
+    [board, cellBorderWidth, cellSize],
   );
 
   return (
