@@ -2,6 +2,7 @@ import { useSetAtom } from 'jotai';
 
 import { gameBoardAtom } from '../../atoms/gameEngineAtom';
 import WrapperGameBoardEngine from '../../wrappers/WrapperGameBoardEngine';
+import CanvasBoardRender from '../CanvasBoardRender/CanvasBoardRender';
 import GameBoardRender from '../GameBoardRender/GameBoardRender';
 
 const GameOfLife = ({ theme }: { theme: 'light' | 'dark' }) => {
@@ -17,7 +18,8 @@ const GameOfLife = ({ theme }: { theme: 'light' | 'dark' }) => {
 
   return (
     <WrapperGameBoardEngine>
-      <GameBoardRender theme={theme} onClick={handleCellClick} />
+      <CanvasBoardRender />
+      {/* <GameBoardRender theme={theme} onClick={handleCellClick} /> */}
     </WrapperGameBoardEngine>
   );
 };

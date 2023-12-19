@@ -1,6 +1,6 @@
 // Tamaño del tablero
-const columns = 170;
-const rows = 70;
+const columns = 400;
+const rows = 170;
 export const cellSize = 8;
 
 // Tipo para representar el tablero
