@@ -1,8 +1,13 @@
 import { Box, Button, useColorMode } from '@chakra-ui/react';
+import { useEffect } from 'react';
 
 import GameOfLife from './components/GameOfLife/GameOfLife';
 function App() {
   const { colorMode, toggleColorMode } = useColorMode();
+
+  useEffect(() => {
+    if (colorMode === 'light') toggleColorMode();
+  }, []);
 
   return (
     <Box
